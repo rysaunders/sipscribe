@@ -69,7 +69,6 @@ export default function TastingForm({ initialData, onSubmit, isEditing = false }
   };
 
   const isWine = formData.type === 'wine';
-  const accentColor = isWine ? 'burgundy' : 'whiskey';
   const bgClass = isWine ? 'bg-burgundy-50' : 'bg-whiskey-50';
   const borderClass = isWine ? 'border-burgundy-100' : 'border-whiskey-100';
   const focusClasses = isWine 
