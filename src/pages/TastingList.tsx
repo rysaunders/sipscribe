@@ -80,7 +80,7 @@ export default function TastingList() {
             </button>
             <button
               onClick={handleImportClick}
-              className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-burgundy-500 shadow-sm transition-all duration-150 ease-in-out border-gray-200"
+              className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-gradient-to-r from-whiskey-700 to-burgundy-600 hover:from-whiskey-800 hover:to-burgundy-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-burgundy-500 shadow-sm transition-all duration-150 ease-in-out"
             >
               Import Collection
             </button>
