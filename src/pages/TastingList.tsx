@@ -1,11 +1,13 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { TastingEntry, BeverageType } from '../types';
-import { getAllTastings } from '../lib/db';
+import { getAllTastings, exportTastings, importTastings } from '../lib/db';
 
 export default function TastingList() {
   const [tastings, setTastings] = useState<TastingEntry[]>([]);
   const [filter, setFilter] = useState<BeverageType | 'all'>('all');
+  const [importStatus, setImportStatus] = useState<string>('');
+  const fileInputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
     const loadTastings = async () => {
@@ -14,6 +16,34 @@ export default function TastingList() {
     };
     loadTastings();
   }, []);
+
+  const handleExport = async () => {
+    await exportTastings();
+  };
+
+  const handleImportClick = () => {
+    fileInputRef.current?.click();
+  };
+
+  const handleImportFile = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+
+    try {
+      const result = await importTastings(file);
+      setImportStatus(`Successfully imported: ${result.added} new, ${result.updated} updated${result.errors ? `, ${result.errors} errors` : ''}`);
+      // Refresh the list
+      const entries = await getAllTastings();
+      setTastings(entries);
+    } catch (error) {
+      setImportStatus(error instanceof Error ? error.message : 'Failed to import file');
+    }
+
+    // Clear the file input
+    if (fileInputRef.current) {
+      fileInputRef.current.value = '';
+    }
+  };
 
   const filteredTastings = filter === 'all' 
     ? tastings 
@@ -28,19 +58,48 @@ export default function TastingList() {
             Your personal collection of wine and whisky experiences
           </p>
         </div>
-        <div className="w-full sm:w-64">
-          <label className="block text-sm font-medium text-gray-700 mb-1">Filter by Type</label>
-          <select
-            value={filter}
-            onChange={(e) => setFilter(e.target.value as BeverageType | 'all')}
-            className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-burgundy-500 focus:ring-burgundy-500"
-          >
-            <option value="all">All Tastings</option>
-            <option value="wine">Wine Only</option>
-            <option value="whisky">Whisky Only</option>
-          </select>
+        <div className="flex flex-col space-y-4 sm:flex-row sm:space-y-0 sm:space-x-4">
+          <div className="w-full sm:w-64">
+            <label className="block text-sm font-medium text-gray-700 mb-1">Filter by Type</label>
+            <select
+              value={filter}
+              onChange={(e) => setFilter(e.target.value as BeverageType | 'all')}
+              className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-burgundy-500 focus:ring-burgundy-500"
+            >
+              <option value="all">All Tastings</option>
+              <option value="wine">Wine Only</option>
+              <option value="whisky">Whisky Only</option>
+            </select>
+          </div>
+          <div className="flex space-x-2">
+            <button
+              onClick={handleExport}
+              className="inline-flex items-center px-4 py-2 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-burgundy-500"
+            >
+              Export
+            </button>
+            <button
+              onClick={handleImportClick}
+              className="inline-flex items-center px-4 py-2 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-burgundy-500"
+            >
+              Import
+            </button>
+            <input
+              type="file"
+              ref={fileInputRef}
+              onChange={handleImportFile}
+              accept=".json"
+              className="hidden"
+            />
+          </div>
         </div>
       </div>
+
+      {importStatus && (
+        <div className={`mb-4 p-4 rounded-md ${importStatus.includes('Successfully') ? 'bg-green-50 text-green-800' : 'bg-red-50 text-red-800'}`}>
+          {importStatus}
+        </div>
+      )}
 
       <div className="mb-8 grid grid-cols-1 sm:grid-cols-2 gap-4">
         <Link
