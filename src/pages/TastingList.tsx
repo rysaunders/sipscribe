@@ -42,6 +42,38 @@ export default function TastingList() {
         </div>
       </div>
 
+      <div className="mb-8 grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <Link
+          to="/add"
+          state={{ type: 'wine' }}
+          className="flex items-center justify-center p-6 border-2 border-dashed border-burgundy-300 rounded-lg bg-burgundy-50 hover:bg-burgundy-100 transition-colors group"
+        >
+          <div className="text-center">
+            <div className="text-burgundy-600 font-serif text-lg font-medium group-hover:text-burgundy-700">
+              Add Wine Tasting
+            </div>
+            <p className="mt-1 text-sm text-burgundy-500">
+              Record your wine tasting experience
+            </p>
+          </div>
+        </Link>
+
+        <Link
+          to="/add"
+          state={{ type: 'whisky' }}
+          className="flex items-center justify-center p-6 border-2 border-dashed border-whiskey-300 rounded-lg bg-whiskey-50 hover:bg-whiskey-100 transition-colors group"
+        >
+          <div className="text-center">
+            <div className="text-whiskey-600 font-serif text-lg font-medium group-hover:text-whiskey-700">
+              Add Whisky Tasting
+            </div>
+            <p className="mt-1 text-sm text-whiskey-500">
+              Record your whisky tasting experience
+            </p>
+          </div>
+        </Link>
+      </div>
+
       <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
         {filteredTastings.map((tasting) => (
           <Link
@@ -149,12 +181,22 @@ export default function TastingList() {
           <p className="text-gray-500 mb-6">
             Start your journey by adding your first tasting note
           </p>
-          <Link
-            to="/add"
-            className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-gradient-to-r from-burgundy-600 to-whiskey-700 hover:from-burgundy-700 hover:to-whiskey-800"
-          >
-            Add New Tasting
-          </Link>
+          <div className="flex justify-center gap-4">
+            <Link
+              to="/add"
+              state={{ type: 'wine' }}
+              className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-gradient-to-r from-burgundy-600 to-burgundy-700 hover:from-burgundy-700 hover:to-burgundy-800"
+            >
+              Add Wine Tasting
+            </Link>
+            <Link
+              to="/add"
+              state={{ type: 'whisky' }}
+              className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-gradient-to-r from-whiskey-600 to-whiskey-700 hover:from-whiskey-700 hover:to-whiskey-800"
+            >
+              Add Whisky Tasting
+            </Link>
+          </div>
         </div>
       )}
     </div>

@@ -21,14 +21,6 @@ function App() {
                   </span>
                 </Link>
               </div>
-              <div className="flex items-center space-x-4">
-                <Link
-                  to="/add"
-                  className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-gradient-to-r from-burgundy-600 to-whiskey-700 hover:from-burgundy-700 hover:to-whiskey-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-burgundy-500"
-                >
-                  Add New Tasting
-                </Link>
-              </div>
             </div>
           </div>
         </nav>

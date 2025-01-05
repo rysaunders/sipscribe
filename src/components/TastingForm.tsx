@@ -70,10 +70,20 @@ export default function TastingForm({ initialData, onSubmit, isEditing = false }
 
   const isWine = formData.type === 'wine';
   const accentColor = isWine ? 'burgundy' : 'whiskey';
+  const bgClass = isWine ? 'bg-burgundy-50' : 'bg-whiskey-50';
+  const borderClass = isWine ? 'border-burgundy-100' : 'border-whiskey-100';
+  const focusClasses = isWine 
+    ? 'focus:border-burgundy-500 focus:ring-burgundy-500' 
+    : 'focus:border-whiskey-500 focus:ring-whiskey-500';
+  const textClass = isWine ? 'text-burgundy-600' : 'text-whiskey-600';
+  const gradientClass = isWine
+    ? 'bg-gradient-to-r from-burgundy-600 to-burgundy-700 hover:from-burgundy-700 hover:to-burgundy-800'
+    : 'bg-gradient-to-r from-whiskey-600 to-whiskey-700 hover:from-whiskey-700 hover:to-whiskey-800';
+  const ringClass = isWine ? 'ring-burgundy-500' : 'ring-whiskey-500';
 
   return (
     <form onSubmit={handleSubmit} className="space-y-8">
-      <div className={`bg-${accentColor}-50 border border-${accentColor}-100 rounded-lg p-6`}>
+      <div className={`${bgClass} border ${borderClass} rounded-lg p-6`}>
         <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
           <div>
             <label className="block text-sm font-medium text-gray-700">Type</label>
@@ -81,7 +91,7 @@ export default function TastingForm({ initialData, onSubmit, isEditing = false }
               name="type"
               value={formData.type}
               onChange={handleInputChange}
-              className={`mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-${accentColor}-500 focus:ring-${accentColor}-500`}
+              className={`mt-1 block w-full rounded-md border-gray-300 shadow-sm ${focusClasses}`}
             >
               <option value="wine">Wine</option>
               <option value="whisky">Whisky</option>
@@ -96,7 +106,7 @@ export default function TastingForm({ initialData, onSubmit, isEditing = false }
               value={formData.name}
               onChange={handleInputChange}
               required
-              className={`mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-${accentColor}-500 focus:ring-${accentColor}-500`}
+              className={`mt-1 block w-full rounded-md border-gray-300 shadow-sm ${focusClasses}`}
               placeholder={isWine ? "e.g., Château Margaux 2015" : "e.g., Macallan 18"}
             />
           </div>
@@ -110,7 +120,7 @@ export default function TastingForm({ initialData, onSubmit, isEditing = false }
                   name="vintage"
                   value={formData.vintage || ''}
                   onChange={handleNumberChange}
-                  className={`mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-${accentColor}-500 focus:ring-${accentColor}-500`}
+                  className={`mt-1 block w-full rounded-md border-gray-300 shadow-sm ${focusClasses}`}
                   placeholder="e.g., 2015"
                 />
               </div>
@@ -121,7 +131,7 @@ export default function TastingForm({ initialData, onSubmit, isEditing = false }
                   name="varietal"
                   value={formData.varietal || ''}
                   onChange={handleInputChange}
-                  className={`mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-${accentColor}-500 focus:ring-${accentColor}-500`}
+                  className={`mt-1 block w-full rounded-md border-gray-300 shadow-sm ${focusClasses}`}
                   placeholder="e.g., Cabernet Sauvignon"
                 />
               </div>
@@ -132,7 +142,7 @@ export default function TastingForm({ initialData, onSubmit, isEditing = false }
                   name="region"
                   value={formData.region || ''}
                   onChange={handleInputChange}
-                  className={`mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-${accentColor}-500 focus:ring-${accentColor}-500`}
+                  className={`mt-1 block w-full rounded-md border-gray-300 shadow-sm ${focusClasses}`}
                   placeholder="e.g., Bordeaux, France"
                 />
               </div>
@@ -146,7 +156,7 @@ export default function TastingForm({ initialData, onSubmit, isEditing = false }
                   name="distillery"
                   value={formData.distillery || ''}
                   onChange={handleInputChange}
-                  className={`mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-${accentColor}-500 focus:ring-${accentColor}-500`}
+                  className={`mt-1 block w-full rounded-md border-gray-300 shadow-sm ${focusClasses}`}
                   placeholder="e.g., The Macallan"
                 />
               </div>
@@ -157,7 +167,7 @@ export default function TastingForm({ initialData, onSubmit, isEditing = false }
                   name="ageStatement"
                   value={formData.ageStatement || ''}
                   onChange={handleNumberChange}
-                  className={`mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-${accentColor}-500 focus:ring-${accentColor}-500`}
+                  className={`mt-1 block w-full rounded-md border-gray-300 shadow-sm ${focusClasses}`}
                   placeholder="e.g., 18"
                 />
               </div>
@@ -201,7 +211,7 @@ export default function TastingForm({ initialData, onSubmit, isEditing = false }
                 value={formData.aromaScore}
                 onChange={handleNumberChange}
                 required
-                className={`mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-${accentColor}-500 focus:ring-${accentColor}-500`}
+                className={`mt-1 block w-full rounded-md border-gray-300 shadow-sm ${focusClasses}`}
               />
             </div>
             <div>
@@ -214,7 +224,7 @@ export default function TastingForm({ initialData, onSubmit, isEditing = false }
                 value={formData.palateScore}
                 onChange={handleNumberChange}
                 required
-                className={`mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-${accentColor}-500 focus:ring-${accentColor}-500`}
+                className={`mt-1 block w-full rounded-md border-gray-300 shadow-sm ${focusClasses}`}
               />
             </div>
             <div>
@@ -227,14 +237,14 @@ export default function TastingForm({ initialData, onSubmit, isEditing = false }
                 value={formData.finishScore}
                 onChange={handleNumberChange}
                 required
-                className={`mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-${accentColor}-500 focus:ring-${accentColor}-500`}
+                className={`mt-1 block w-full rounded-md border-gray-300 shadow-sm ${focusClasses}`}
               />
             </div>
           </div>
 
           <div className="mt-4">
             <span className="block text-sm font-medium text-gray-700">Overall Score</span>
-            <div className={`mt-1 text-3xl font-bold text-${accentColor}-600`}>
+            <div className={`mt-1 text-3xl font-bold ${textClass}`}>
               {calculateOverallScore()}/10
             </div>
           </div>
@@ -253,7 +263,7 @@ export default function TastingForm({ initialData, onSubmit, isEditing = false }
               onChange={handleInputChange}
               required
               rows={2}
-              className={`mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-${accentColor}-500 focus:ring-${accentColor}-500`}
+              className={`mt-1 block w-full rounded-md border-gray-300 shadow-sm ${focusClasses}`}
               placeholder={isWine ? "e.g., Deep ruby red with purple highlights" : "e.g., Rich amber with copper highlights"}
             />
           </div>
@@ -266,7 +276,7 @@ export default function TastingForm({ initialData, onSubmit, isEditing = false }
               onChange={handleInputChange}
               required
               rows={3}
-              className={`mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-${accentColor}-500 focus:ring-${accentColor}-500`}
+              className={`mt-1 block w-full rounded-md border-gray-300 shadow-sm ${focusClasses}`}
               placeholder={isWine ? "e.g., Black cherries, vanilla, tobacco" : "e.g., Honey, dried fruits, oak spices"}
             />
           </div>
@@ -279,7 +289,7 @@ export default function TastingForm({ initialData, onSubmit, isEditing = false }
               onChange={handleInputChange}
               required
               rows={3}
-              className={`mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-${accentColor}-500 focus:ring-${accentColor}-500`}
+              className={`mt-1 block w-full rounded-md border-gray-300 shadow-sm ${focusClasses}`}
               placeholder={isWine ? "e.g., Full-bodied, rich tannins, dark fruit" : "e.g., Rich sherry, dark chocolate, orange peel"}
             />
           </div>
@@ -292,7 +302,7 @@ export default function TastingForm({ initialData, onSubmit, isEditing = false }
               onChange={handleInputChange}
               required
               rows={3}
-              className={`mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-${accentColor}-500 focus:ring-${accentColor}-500`}
+              className={`mt-1 block w-full rounded-md border-gray-300 shadow-sm ${focusClasses}`}
               placeholder={isWine ? "e.g., Long, persistent with hints of mocha" : "e.g., Long, warming with lingering spices"}
             />
           </div>
@@ -305,7 +315,7 @@ export default function TastingForm({ initialData, onSubmit, isEditing = false }
               onChange={handleInputChange}
               required
               rows={2}
-              className={`mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-${accentColor}-500 focus:ring-${accentColor}-500`}
+              className={`mt-1 block w-full rounded-md border-gray-300 shadow-sm ${focusClasses}`}
               placeholder={isWine ? "e.g., Grilled ribeye, aged cheeses" : "e.g., Dark chocolate, blue cheese, cigars"}
             />
           </div>
@@ -315,7 +325,7 @@ export default function TastingForm({ initialData, onSubmit, isEditing = false }
       <div className="flex justify-end">
         <button
           type="submit"
-          className={`px-6 py-3 border border-transparent text-base font-medium rounded-md text-white bg-gradient-to-r from-${accentColor}-600 to-${accentColor}-700 hover:from-${accentColor}-700 hover:to-${accentColor}-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-${accentColor}-500`}
+          className={`px-6 py-3 border border-transparent text-base font-medium rounded-md text-white ${gradientClass} focus:outline-none focus:ring-2 focus:ring-offset-2 ${ringClass}`}
         >
           {isEditing ? 'Update Tasting' : 'Add Tasting'}
         </button>
