@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { TastingFormData, BeverageType } from '../types';
+import { TastingFormData } from '../types';
 
 interface TastingFormProps {
   initialData?: Partial<TastingFormData>;
@@ -21,8 +21,6 @@ export default function TastingForm({ initialData, onSubmit, isEditing = false }
     finishScore: 5,
     ...initialData,
   });
-
-  const [imageFile, setImageFile] = useState<File | null>(null);
 
   useEffect(() => {
     if (initialData) {
@@ -49,7 +47,6 @@ export default function TastingForm({ initialData, onSubmit, isEditing = false }
   const handleImageChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (file) {
-      setImageFile(file);
       const reader = new FileReader();
       reader.onloadend = () => {
         setFormData(prev => ({
