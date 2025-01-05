@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Wine Glass -->
+  <path d="M10 28H18M14 28V18M8 4H20L17 18H11L8 4Z" stroke="#722F37" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+  <!-- Whisky Glass -->
+  <path d="M22 28H24M23 28V20M20 8H26L25 20H21L20 8Z" stroke="#B45309" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+</svg> 

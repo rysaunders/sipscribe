@@ -74,15 +74,15 @@ export default function TastingList() {
           <div className="flex space-x-2">
             <button
               onClick={handleExport}
-              className="inline-flex items-center px-4 py-2 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-burgundy-500"
+              className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-gradient-to-r from-burgundy-600 to-whiskey-700 hover:from-burgundy-700 hover:to-whiskey-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-burgundy-500 shadow-sm transition-all duration-150 ease-in-out"
             >
-              Export
+              Export Collection
             </button>
             <button
               onClick={handleImportClick}
-              className="inline-flex items-center px-4 py-2 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-burgundy-500"
+              className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-burgundy-500 shadow-sm transition-all duration-150 ease-in-out border-gray-200"
             >
-              Import
+              Import Collection
             </button>
             <input
               type="file"
